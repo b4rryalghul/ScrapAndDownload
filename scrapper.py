@@ -53,7 +53,6 @@ def scrape_page(url):
 
     return links_with_images
 
-"""
     # Extraer todas las imágenes de la página
     all_images = []
     for img in soup.find_all('img'):
@@ -72,7 +71,7 @@ def scrape_page(url):
         })
 
     return links_with_images #, all_images
-"""
+
 def save_to_json(data, filename):
     """ Guarda los datos en un archivo JSON en el directorio del script """
     output_path = Path(__file__).parent / filename
