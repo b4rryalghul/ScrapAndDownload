@@ -9,7 +9,7 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Parámetros configurables
-URL = "ejemplo.com"          # Cambia por la URL deseada
+URL = "http://ejemplo.com"          # Cambia por la URL deseada
 TIMEOUT = 10
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 
@@ -51,8 +51,6 @@ def scrape_page(url):
             'texto': texto
         })
 
-    return links_with_images
-
     # Extraer todas las imágenes de la página
     all_images = []
     for img in soup.find_all('img'):
@@ -70,7 +68,7 @@ def scrape_page(url):
             'srcset': img.get('srcset')   # opcional
         })
 
-    return links_with_images #, all_images
+    return links_with_images, all_images
 
 def save_to_json(data, filename):
     """ Guarda los datos en un archivo JSON en el directorio del script """
@@ -79,7 +77,6 @@ def save_to_json(data, filename):
         json.dump(data, f, indent=2, ensure_ascii=False)
     logging.info(f"Datos guardados en {output_path}")
 
-
 def save_to_text(data, filename):
     """ Guarda los url en un .txt """
     output_path = Path(__file__).parent / filename
@@ -87,9 +84,9 @@ def save_to_text(data, filename):
         for item in data:
             f.write(item['url'] + '\n')
 
+
 if __name__ == "__main__":
-    enlaces = scrape_page(URL)
-    imagenes = scrape_page(URL)
+    enlaces, imagenes = scrape_page(URL)
 
     if enlaces is None:
         logging.error("No se pudo realizar el scraping.")
@@ -108,5 +105,4 @@ if __name__ == "__main__":
     # save_to_json(imagenes, "imagenes.json")
 
     logging.info(f"Se extrajeron {len(enlaces)} enlaces con imagen y {len(imagenes)} imagenes totales.")
-    logging.info(f"Se extrajeron {len(enlaces)} enlaces con imagen.")
     logging.info(f"Se guardaron {len(enlaces)} URLs en .txt")
