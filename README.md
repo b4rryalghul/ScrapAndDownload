@@ -1,6 +1,8 @@
 # Web Scraping Tools
 
 Colección de scripts en Python para extraer recursos de páginas web y localizar o descargar archivos de video.
+Un pequeño proyecto que uso para descargar videos y capitulos de diversos websites. Con scrapper.py busco las imágenes que contienen links, generalmente apuntan hacia los capítulos y se guardan en un archivo .txt y json; con Scrap&DownloadMP4 descargo los videos del archivo .txt generado. Me ha funcionado bien para websites como Dragon Ball Sullca, caballerosdelzodiaco.co y otros sitios pequeños.
+
 
 ## Contenido
 
